@@ -1,28 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Navigation />
+    <div v-if="errored">
+      <h1>Error!</h1>
+    </div>
+    <div v-else-if="loading">
+      <vk-spinner></vk-spinner>
+    </div>
+    <div v-else>
+      <SideBar :sections="sections"/>
+      <MainContent :params="localParams"/>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Navigation from "./components/Navigation.vue";
+import SideBar from "./components/SideBar.vue";
+import MainContent from "./components/MainContent.vue";
 
 export default {
   name: "app",
   components: {
-    HelloWorld
+    Navigation,
+    SideBar,
+    MainContent
+  },
+  props: {
+    params: Object,
+    loading: Boolean,
+    errored: Boolean
+  },
+  data: function () {
+    return {
+      localParams: this.params
+    }
+  },
+  computed: {
+    sections: function() {
+      return Object.keys(this.localParams)
+    }
   }
 };
 </script>
 
 <style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
