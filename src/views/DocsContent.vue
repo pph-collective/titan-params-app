@@ -1,22 +1,14 @@
 <template>
   <div class="main uk-section uk-section-default">
     <div class="uk-container">
-      <Param :level="1" :params="params" />
+      <h1>Docs</h1>
     </div>
   </div>
 </template>
 
 <script>
-import Param from './Param.vue'
-
 export default {
-  name: 'MainContent',
-  components: {
-    Param
-  },
-  props: {
-    params: Object
-  }
+  name: 'DocsContent'
 }
 </script>
 

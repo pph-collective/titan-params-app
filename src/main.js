@@ -1,4 +1,5 @@
 import Vue from "vue"
+
 import App from "./App.vue"
 
 import axios from "axios"
@@ -7,6 +8,7 @@ import yaml from "yaml"
 import Vuikit from 'vuikit'
 import VuikitIcons from '@vuikit/icons'
 import '@vuikit/theme';
+import router from './router'
 
 Vue.use(Vuikit)
 Vue.use(VuikitIcons)
@@ -19,6 +21,7 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${process.env.VUE_APP_G
 
 new Vue({
   el: "#app",
+  router: router,
   render: function(h) {
     return h(App, {
       props: {

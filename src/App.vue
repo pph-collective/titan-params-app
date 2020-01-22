@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Navigation />
     <div v-if="errored">
       <h1>Error!</h1>
     </div>
@@ -9,22 +8,18 @@
     </div>
     <div v-else>
       <SideBar :sections="sections"/>
-      <MainContent :params="localParams"/>
+      <router-view :params="params"/>
     </div>
   </div>
 </template>
 
 <script>
-import Navigation from "./components/Navigation.vue";
 import SideBar from "./components/SideBar.vue";
-import MainContent from "./components/MainContent.vue";
 
 export default {
   name: "app",
   components: {
-    Navigation,
     SideBar,
-    MainContent
   },
   props: {
     params: Object,
