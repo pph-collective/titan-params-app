@@ -1,7 +1,7 @@
 <template>
   <div class="main uk-section uk-section-default">
     <div class="uk-container">
-      <Param level=1 :params="params" />
+      <Param :level="1" :params="params" />
     </div>
   </div>
 </template>
