@@ -1,4 +1,4 @@
-# hello-vue
+# titan-params-app
 
 ## Project setup
 ```
