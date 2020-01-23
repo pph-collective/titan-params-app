@@ -1,11 +1,23 @@
 <template>
   <div class="sidebar-left">
-    <vk-nav>
+    <vk-nav v-vk-scroll>
+      <img src="../assets/titan_logo.png" alt="TITAN logo" />
       <vk-nav-item-header title="TITAN Params" />
-      <vk-nav-item-parent href="/" title="Params">
-        <vk-nav-item v-for="section in sections" :key="section" :title="section" :href="'#'+section"  v-vk-scroll></vk-nav-item>
-      </vk-nav-item-parent>
-      <vk-nav-item-parent href="/docs" title="Docs" />
+      <vk-nav-item-divider />
+      <li class="uk-parent">
+        <router-link to="/params">Params</router-link>
+        <ul class="uk-nav-sub">
+          <div v-for="section in sections" :key="section">
+            <li class="">
+              <router-link :to="'/params#' + section">{{section}}</router-link>
+            </li>
+          </div>
+        </ul>
+      </li>
+      <vk-nav-item-divider />
+      <li class="uk-parent">
+        <router-link to="/docs">Docs</router-link>
+      </li>
     </vk-nav>
   </div>
 </template>
@@ -30,5 +42,6 @@ export default {
     position: fixed;
     top: 0px;
     width: 240px!important;
+    background-color: #EBEDEF;
 }
 </style>

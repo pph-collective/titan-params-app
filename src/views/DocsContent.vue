@@ -1,5 +1,5 @@
 <template>
-  <div class="main uk-section uk-section-default">
+  <div class="main uk-section uk-section-default" v-highlightjs>
     <div class="uk-container">
       <span v-html="docsMd"></span>
     </div>

@@ -8,10 +8,14 @@ import yaml from "yaml"
 import Vuikit from 'vuikit'
 import VuikitIcons from '@vuikit/icons'
 import '@vuikit/theme';
+
+import VueHighlightJS from 'vue-highlightjs'
+
 import router from './router'
 
 Vue.use(Vuikit)
 Vue.use(VuikitIcons)
+Vue.use(VueHighlightJS)
 
 Vue.config.productionTip = false
 
