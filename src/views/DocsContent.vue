@@ -1,14 +1,22 @@
 <template>
   <div class="main uk-section uk-section-default">
     <div class="uk-container">
-      <h1>Docs</h1>
+      <span v-html="docsMd"></span>
     </div>
   </div>
 </template>
 
 <script>
+import marked from 'marked'
+import rawMd from '../markdown/docs.md'
+
 export default {
-  name: 'DocsContent'
+  name: 'DocsContent',
+  data: function () {
+    return {
+      docsMd: marked(rawMd)
+    }
+  }
 }
 </script>
 

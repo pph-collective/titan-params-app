@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MainContent from '../views/MainContent.vue'
+import DocsContent from '../views/DocsContent.vue'
 
 Vue.use(VueRouter)
 
@@ -16,7 +17,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/DocsContent.vue')
+    component: DocsContent
   }
 ]
 
