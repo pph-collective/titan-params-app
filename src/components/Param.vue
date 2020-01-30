@@ -1,15 +1,16 @@
 <template>
   <div :style="style">
-    <div v-for="(param, name) in params" :key="name" :id="name">
+    <ParamItem v-if="'default' in params" :params="params" :level="level" title="<keys>"/>
+    <div v-else v-for="(param, name) in params" :key="name" :id="name">
       <Field v-if="param.constructor !== Object" :name="name" :item="param" />
       <div v-else>
-        <hr v-if="level == 1">
-        <h4>{{name}}</h4>
-        <div v-if="'default' in param">
-          <ParamItem :params="param" :level="level"/>
-        </div>
-        <Param v-else-if="(!!param) && (param.constructor === Object)" :level="nextLevel" :params="param" />
-        <Field v-else :name="name" :item="param" />
+        <hr v-if="level === 1">
+
+        <ParamItem v-if="'default' in param" :params="param" :level="level" :title="name"/>
+        <ParamHeader v-else :title="name">
+          <Param :level="nextLevel" :params="param" />
+        </Paramheader>
+
       </div>
     </div>
   </div>
@@ -18,6 +19,7 @@
 <script>
 import ParamItem from './ParamItem.vue'
 import Field from './Field.vue'
+import ParamHeader from './ParamHeader'
 
 export default {
   name: 'Param',
@@ -27,18 +29,24 @@ export default {
   },
   components: {
     ParamItem,
-    Field
+    Field,
+    ParamHeader
   },
   computed: {
     style: function() {
-      return `padding-left: ${this.level * 10}px`
+      if (this.level === 1) {
+        return `padding-left: 0px`
+      } else {
+        return `padding-left: 30px`
+      }
     },
     nextLevel: function() {
-      return Number(this.level) + 1
+      return this.level + 1
     }
   }
 }
 </script>
 
 <style lang="scss">
+
 </style>

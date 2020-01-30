@@ -15,6 +15,10 @@ const routes = [
     path: '/docs',
     name: 'docs',
     component: DocsContent
+  },
+  {
+    path: '*',
+    redirect: '/params'
   }
 ]
 
@@ -23,9 +27,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
   scrollBehavior (to, from, savedPosition) {
-    console.log(to)
-    console.log(from)
-    console.log(savedPosition)
     if (savedPosition) {
       return savedPosition
     } else if (to.hash) {

@@ -1,18 +1,20 @@
 <template>
   <li>
-    <p v-if="item.constructor === Object">
+    <span v-if="item.constructor === Object">
       <strong>{{name}}:</strong>
       <ul>
         <Field v-for="(subItem, subItemName) in item" :key="subItemName" :name="subItemName" :item="subItem" />
       </ul>
-    </p>
-    <p v-else-if="item.constructor === Array">
+    </span>
+
+    <span v-else-if="item.constructor === Array" class="inline">
       <strong>{{name}}:</strong>
-      <ul>
-        <li v-for="subItem in item" :key="subItem">{{subItem}}</li>
-      </ul>
-    </p>
-    <p v-else><strong>{{name}}: </strong>{{item}}</p>
+      <p class="mono"> [
+        {{joinArray()}}
+        ]</p>
+    </span>
+
+    <span v-else><strong>{{name}}: </strong><span class="mono">{{item}}</span></span>
   </li>
 </template>
 
@@ -21,10 +23,23 @@ export default {
   name: 'Field',
   props: {
     name: String,
-    item: [String, Number, Array, Object]
+    item: [String, Number, Array, Object, Boolean]
+  },
+  methods: {
+    joinArray: function() {
+      return this.item.join(", ")
+    }
   }
 }
 </script>
 
 <style lang="scss">
+
+.mono {
+  font-family: monospace;
+}
+
+.inline * {
+  display: inline;
+}
 </style>
