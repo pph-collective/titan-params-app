@@ -1,7 +1,7 @@
 <template>
   <div :style="style">
     <ParamItem v-if="'default' in params" :params="params" :level="level" title="<keys>"/>
-    <div v-else v-for="(param, name) in params" :key="name" :id="name">
+    <div v-else v-for="(param, name) in params" :key="name" :id="name + '-' + level">
       <Field v-if="param.constructor !== Object" :name="name" :item="param" />
       <div v-else>
         <hr v-if="level === 1">

@@ -9,7 +9,7 @@
         <ul class="uk-nav-sub">
           <div v-for="section in sections" :key="section">
             <li class="">
-              <router-link :to="'/params#' + section">{{section}}</router-link>
+              <router-link :to="'/params#' + section +'-1'">{{section}}</router-link>
             </li>
           </div>
         </ul>
