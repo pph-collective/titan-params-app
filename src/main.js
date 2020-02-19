@@ -41,19 +41,35 @@ new Vue({
     errored: false
   },
   mounted () {
-    let url = `https://api.github.com/repos/marshall-lab/TITAN/contents/titan/params?ref=${branch}`
+    let url = `https://api.github.com/graphql`
+    let query = {query: `
+      query {
+        repository(owner: "marshall-lab", name: "TITAN") {
+          folder: object(expression: "${branch}:titan/params") {
+            ... on Tree {
+              entries {
+                oid
+                object {
+                  ... on Blob {
+                    text
+                  }
+                }
+                name
+              }
+            }
+          }
+        }
+        }
+      `
+    }
 
     axios
-      .get(url)
+      .post(url, query)
       .then(response => {
-        response.data.map(val => {
+        response.data.data.repository.folder.entries.map(val => {
           let name = val.name.split(".")[0]
-          axios
-            .get(val.url)
-            .then(file => {
-              let param = yaml.parse(atob(file.data.content))
-              Vue.set(this.params, name, param[name])
-            })
+          let param = yaml.parse(val.object.text)
+          Vue.set(this.params, name, param[name])
         })
       })
       .catch(error => {
