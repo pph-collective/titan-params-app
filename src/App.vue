@@ -3,9 +3,6 @@
     <div v-if="errored">
       <h1>Error!</h1>
     </div>
-    <div v-else-if="loading">
-      <vk-spinner></vk-spinner>
-    </div>
     <div v-else>
       <SideBar :sections="sections"/>
       <router-view :params="params"/>
@@ -23,7 +20,6 @@ export default {
   },
   props: {
     params: Object,
-    loading: Boolean,
     errored: Boolean
   },
   data: function () {
