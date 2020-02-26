@@ -2,11 +2,14 @@ name: Deploy GH Pages
 
 on:
   push:
-    branches: 
+    branches:
       - master
 
 jobs:
   build:
+
+    env:
+      VUE_APP_TITAN_BRANCH: params-overhaul
 
     runs-on: ubuntu-latest
 

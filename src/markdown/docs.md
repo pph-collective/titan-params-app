@@ -33,6 +33,7 @@ The order of preference for a parameter value is:
 
 Parameters span a variety of areas, and many of them will either have a good default or will not be used at all based on the features in use in the model (e.g., if incarceration is off, the incarceration params won't be used).  However, some parameters are required for every model as they are pivotal to how the model runs.  These are:
 
+(**NB:** `classes` are foundational, but will make more sense once you've read everything else - circle back to this)
 * `classes`: There are defaults here, however they should always be reviewed.  Where a parameter of type `sub-dict` has `keys`, these keys refer to the parameters that have been set in classes.  For example, if `WHITE` is set as one of the races, where `races` is a `key` for a `sub-dict`, they yaml might look like:
 
 ```yml
