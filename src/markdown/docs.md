@@ -20,7 +20,7 @@ The fully computed parameters for your model run can be found in your results di
 
 ### Settings
 
-Settings allow base populations to be defined and easily re-used across model runs.  They typically are named after the city they are modeled after.  One exception is `base`, which contains complex population-based defaults and can be used in combination with any other setting (or no setting). Any values set at this level will override what is in the `default` field.
+Settings allow base populations to be defined and easily re-used across model runs.  They typically are named after the city they are modeled after.  One exception is `base`, which contains complex population-based defaults and can be used in combination with any other setting (or no setting). Any values set at this level will override what is in the `default` field of a paramter definition.
 
 The order of preference for a parameter value is:
 
@@ -33,7 +33,7 @@ The order of preference for a parameter value is:
 
 Parameters span a variety of areas, and many of them will either have a good default or will not be used at all based on the features in use in the model (e.g., if incarceration is off, the incarceration params won't be used).  However, some parameters are required for every model as they are pivotal to how the model runs.  These are:
 
-* `classes`: There are defaults here, however they should always be reviewed.  Where a parameter of type `sub-dict` has `keys`, these keys refer to the parameters that have been set in classes.  For example, if `WHITE` is set as one of the races, where `race` is a `key` for a `sub-dict`, they yaml might look like:
+* `classes`: There are defaults here, however they should always be reviewed.  Where a parameter of type `sub-dict` has `keys`, these keys refer to the parameters that have been set in classes.  For example, if `WHITE` is set as one of the races, where `races` is a `key` for a `sub-dict`, they yaml might look like:
 
 ```yml
 subdict_param:
@@ -41,7 +41,7 @@ subdict_param:
     ppl: .9
 ```
 
-* `demographics`: For each of the populations that are set in the `classes` params, there should be a corresponding demographics key.  At a minimum, the `ppl` (population) percentage should be set. The model will validate that all the population percentages add up to 1 at both the `races` and `sex_types`/`populations` levels.  So if our races are `WHITE` and `BLACK` (the default) and our only `sex_types` are `MSM` and `ABC` and our `populations` is `PWID` (the default), below is a minimal yaml needed to set that up.
+* `demographics`: For each of the populations that are set in the `classes` params, there should be a corresponding demographics key.  At a minimum, the `ppl` (population) percentage should be set. The model will validate that all the population percentages add up to 1 at both the `races` and `sex_types` levels.  So if our races are `WHITE` and `BLACK` (the default) and our only `sex_types` are `MSM` and `ABC` and our `populations` is `PWID` (the default), below is a minimal yaml needed to set that up.
 
 ```yml
 classes:
@@ -72,7 +72,7 @@ demographics:
     # PWID not needed to be specified if not used in the BLACK population as the default ppl is 0
 ```
 
-* `features`: By default all `features` are set to `false` so that they are not in use.  If you want to use a feature (e.g. `incar`), update the `features` params accordingly.  Many features files have a related section which has the defaults for that feature when it is on.
+* `features`: By default all `features` are set to `false` so that they are not in use.  If you want to use a feature (e.g. `incar`), update the `features` params accordingly.  Many features files have a related section which has the related parameters for that feature when it is on.
 
 ```yml
 features:
@@ -84,7 +84,7 @@ incar:
     prob: 0.9
 ```
 
-* `model`: This controls core parts of the model, such as the population size, and network type.
+* `model`: This controls core parts of the model, such as the population size, random seeds, and network type.
 
 ### Data Types
 
@@ -92,12 +92,12 @@ Every parameter is associated with a data type to ensure that what is entered is
 
 * `float`: a floating point number (e.g.`0.67`)
 * `int`: an integer (e.g. `2`)
-* `boolean`: a true or false value
+* `boolean`: a `true` or `false` value
 * `enum`: a value from a set list (see `values` of same definition for valid options)
 * `array`: a list of values from a set list (see `values` of same definition for valid options)
 * `bin`: a sub-structure with numeric keys and set fields (see `fields` of same definition for required sub-fields)
 * `sub-dict`: a sub-structure with keys that are based on the fields in `classes` (e.g. `races`)
-* `definition`: a sub-substructure with keys you define, but required fields (see `fields` of same definition for required sub-fields). Within a `definition`'s fields there is the option of a special `type` of `keys` this says the values acceptable for that field are the keys that are defined in the definition (see `classes.sex_types` for an example).
+* `definition`: a sub-substructure with keys you define, but required fields (see `fields` of same definition for required sub-fields). Within a `definition`'s fields there is the option of a special `type` of `keys`, which means the values acceptable for that field are the keys that are defined in the definition (see `classes.sex_types` for an example).
 
 ```yml
 float_param: 0.67
