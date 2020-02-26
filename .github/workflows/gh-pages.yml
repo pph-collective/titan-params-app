@@ -10,6 +10,7 @@ jobs:
 
     env:
       VUE_APP_TITAN_BRANCH: params-overhaul
+      VUE_APP_GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     runs-on: ubuntu-latest
 
