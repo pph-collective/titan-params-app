@@ -1,0 +1,26 @@
+name: Deploy GH Pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    env:
+      VUE_APP_TITAN_BRANCH: params-overhaul
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: npm intall, build
+      run: |
+        npm install
+        npm run build
+    - name: Deploy to GH Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_dir: ./dist
