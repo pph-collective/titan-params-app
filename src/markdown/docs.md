@@ -4,14 +4,19 @@ The TITAN model uses various parameters to control the set up and running of the
 
 ## Getting Started
 
-The model takes as a command line argument the path to either a single [yaml](https://gettaurus.org/docs/YAMLTutorial/) file or a directory of yaml files, a setting name (optional), and whether to use the `base` setting (default `True`).  Either a file or directory is fine, it just depends on if you like all params in one file, or the organization of breaking it into multiple files.  The yaml file(s) only need to contain parameters that the user wishes to change from the default.  This subset of parameters will be combined with all of the defaults to calculate the full parameter specification for a model run.  This full specification is additionally saved off to the `results` directory with the reports so that the run can be reproduced in the future.
+The model takes several command line arguments for the setting and parameters:
+1) (required) a path to either a single [yaml](https://gettaurus.org/docs/YAMLTutorial/) file or a directory of yaml files;
+2) (optional) a setting name; and 
+3) (optional) a true/false for whether to use the `base` setting (default `True`).
+
+Either a file or directory may be used, it just depends on if you like all params in one file or the organization of breaking it into multiple files.  The yaml file(s) only need to contain parameters that the user wishes to change from the default. Any unspecified parameters will revert to the defaults. The subset of parameters given to the model will be combined with all of the defaults to calculate the full parameter specification for a model run.  This full specification is additionally saved off to the `results` directory with the reports so that the run can be reproduced in the future.
 
 If using `run_titan.py`:
 ```bash
 python -m run_titan -p /dir/to/my_params -S atlanta
 ```
 
-If using `subTitan.sh`:
+If submitting a job using `subTitan.sh`:
 ```bash
 ./subTitan my_params/ -S atlanta
 ```
@@ -20,7 +25,7 @@ The fully computed parameters for your model run can be found in your results di
 
 ### Settings
 
-Settings allow base populations to be defined and easily re-used across model runs.  They typically are named after the city they are modeled after.  One exception is `base`, which contains complex population-based defaults and can be used in combination with any other setting (or no setting). Any values set at this level will override what is in the `default` field of a paramter definition.
+Settings allow base populations to be defined and easily re-used across model runs.  They typically are named after the city they are modeled after.  One exception is `base`, which contains complex population-based defaults and can be used in combination with any other setting (or no setting). Any values set at this level will override what is in the `default` field of a parameter definition.
 
 The order of preference for a parameter value is:
 
@@ -33,7 +38,7 @@ The order of preference for a parameter value is:
 
 Parameters span a variety of areas, and many of them will either have a good default or will not be used at all based on the features in use in the model (e.g., if incarceration is off, the incarceration params won't be used).  However, some parameters are required for every model as they are pivotal to how the model runs.  These are:
 
-* `classes`: There are defaults here, however they should always be reviewed.  Where a parameter of type `sub-dict` has `keys`, these keys refer to the parameters that have been set in classes.  For example, if `WHITE` is set as one of the races, where `races` is a `key` for a `sub-dict`, they yaml might look like:
+* `classes`: There are defaults here; however, they should always be reviewed.  Where a parameter of type `sub-dict` has `keys`, these keys refer to the parameters that have been set in classes.  For example, if `WHITE` is set as one of the races, where `races` is a `key` for a `sub-dict`, they yaml might look like:
 
 ```yml
 subdict_param:
