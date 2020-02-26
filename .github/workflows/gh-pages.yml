@@ -10,6 +10,7 @@ jobs:
 
     env:
       VUE_APP_TITAN_BRANCH: params-overhaul
+      NODE_ENV: production
 
     runs-on: ubuntu-latest
 
