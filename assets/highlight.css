@@ -1,0 +1,84 @@
+/*
+ * Hopscotch
+ * by Jan T. Sott
+ * https://github.com/idleberg/Hopscotch
+ *
+ * This work is licensed under the Creative Commons CC0 1.0 Universal License
+ */
+
+/* Comment */
+pre code .hljs-comment,
+pre code .hljs-quote {
+  color: #989498;
+}
+
+/* Red */
+pre code .hljs-variable,
+pre code .hljs-template-variable,
+pre code .hljs-attribute,
+pre code .hljs-tag,
+pre code .hljs-name,
+pre code .hljs-selector-id,
+pre code .hljs-selector-class,
+pre code .hljs-regexp,
+pre code .hljs-link,
+pre code .hljs-deletion {
+  color: #dd464c;
+}
+
+/* Orange */
+pre code .hljs-number,
+pre code .hljs-built_in,
+pre code .hljs-builtin-name,
+pre code .hljs-literal,
+pre code .hljs-type,
+pre code .hljs-params {
+  color: #fd8b19;
+}
+
+/* Yellow */
+pre code .hljs-class pre code .hljs-title {
+  color: #fdcc59;
+}
+
+/* Green */
+pre code .hljs-string,
+pre code .hljs-symbol,
+pre code .hljs-bullet,
+pre code .hljs-addition {
+  color: #8fc13e;
+}
+
+/* Aqua */
+pre code .hljs-meta {
+  color: #149b93;
+}
+
+/* Blue */
+pre code .hljs-function,
+pre code .hljs-section,
+pre code .hljs-title {
+  color: #1290bf;
+}
+
+/* Purple */
+pre code .hljs-keyword,
+pre code .hljs-selector-tag {
+  color: #c85e7c;
+}
+
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #322931;
+  color: #b9b5b8;
+  padding: 0.5em;
+}
+
+pre code .hljs-emphasis {
+  font-style: italic;
+}
+
+pre code .hljs-strong {
+  font-weight: bold;
+}
