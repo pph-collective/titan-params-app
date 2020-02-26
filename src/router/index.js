@@ -18,7 +18,7 @@ const routes = [
   },
   {
     path: '*',
-    redirect: '/params'
+    redirect: '/index.html'
   }
 ]
 
