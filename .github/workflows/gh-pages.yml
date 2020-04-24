@@ -10,7 +10,7 @@ jobs:
   build:
 
     env:
-      VUE_APP_TITAN_BRANCH: params-overhaul
+      VUE_APP_TITAN_BRANCH: develop
       VUE_APP_GH_TOKEN: ${{ secrets.VUE_GH_TOKEN }}
 
     runs-on: ubuntu-latest
