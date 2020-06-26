@@ -1,13 +1,14 @@
 <template>
   <div class="uk-box-shadow-small uk-padding-none">
     <div class="uk-padding-small">
-      <div class="header">
-        <vk-icon icon="chevron-right" ratio="0.7"></vk-icon>
+      <div class="header" v-on:click="showItem = !showItem">
+        <vk-icon v-if="showItem" icon="chevron-down" ratio="0.7"></vk-icon>
+        <vk-icon v-else icon="chevron-right" ratio="0.7"></vk-icon>
         <h4 class="mono">{{title}}</h4>
         <p v-if="type" class="mono"> ::{{type}}</p>
       </div>
 
-      <slot></slot>
+      <slot v-if="showItem"></slot>
     </div>
   </div>
 </template>
@@ -18,6 +19,11 @@ export default {
   props: {
     title: String,
     type: String
+  },
+  data: function() {
+    return {
+      showItem: true,
+    }
   }
 }
 </script>
@@ -26,6 +32,7 @@ export default {
 
 .header * {
   display: inline;
+  cursor: pointer;
 }
 
 h4 {

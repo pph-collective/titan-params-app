@@ -32,6 +32,11 @@ export default {
     Field,
     ParamHeader
   },
+  data: function() {
+    return {
+      showItem: true
+    }
+  },
   computed: {
     style: function() {
       if (this.level === 1) {
