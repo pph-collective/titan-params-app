@@ -8,7 +8,9 @@
         <p v-if="type" class="mono"> ::{{type}}</p>
       </div>
 
-      <slot v-if="showItem"></slot>
+      <div v-show="showItem">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
