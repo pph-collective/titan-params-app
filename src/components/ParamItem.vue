@@ -29,6 +29,7 @@ export default {
   },
   data: function() {
     return {
+      showItem: true,
       standardItems: ["default", "type", "description"]
     }
   },
