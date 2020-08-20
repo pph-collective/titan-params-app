@@ -10,7 +10,7 @@ jobs:
   build:
 
     env:
-      VUE_APP_TITAN_BRANCH: master
+      VUE_APP_TITAN_BRANCH: main
       VUE_APP_GH_TOKEN: ${{ secrets.VUE_GH_TOKEN }}
 
     runs-on: ubuntu-latest
