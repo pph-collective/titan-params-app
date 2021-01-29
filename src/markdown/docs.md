@@ -6,8 +6,7 @@ The TITAN model uses various parameters to control the set up and running of the
 
 The model takes several command line arguments for the setting and parameters:
 1. (required) a path to either a single [yaml](https://gettaurus.org/docs/YAMLTutorial/) file or a directory of yaml files;
-2. (optional) a setting name; and
-3. (optional) a true/false for whether to use the `base` setting (default `True`).
+2. (optional) and a setting name;
 
 Either a file or directory may be used for params, it just depends on if you like all params in one file or the organization of breaking it into multiple files.  The yaml file(s) only need to contain parameters that the user wishes to change from the default. Any unspecified parameters will revert to the defaults. The subset of parameters given to the model will be combined with all of the defaults to calculate the full parameter specification for a model run.  This full specification is additionally saved off to the `results` directory with the reports so that the run can be reproduced in the future.
 
@@ -31,8 +30,7 @@ The order of preference for a parameter value is:
 
 1. Param files (`-p` flag or first argument to `subTitan.sh`)
 2. City Setting files (`-S` flag)
-3. Base Setting files (`-b` flag)
-4. Parameter definition defaults
+3. Parameter definition defaults
 
 ### Key Parameters
 
