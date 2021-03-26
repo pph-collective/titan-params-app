@@ -4,19 +4,18 @@ The TITAN model uses various parameters to control the set up and running of the
 
 ## Getting Started
 
-The model takes several command line arguments for the setting and parameters:
+The model takes command line arguments for the setting and parameters:
 1. (required) a path to either a single [yaml](https://gettaurus.org/docs/YAMLTutorial/) file or a directory of yaml files;
-2. (optional) a setting name; and
-3. (optional) a true/false for whether to use the `base` setting (default `True`).
+2. (optional) a setting name;
 
 Either a file or directory may be used for params, it just depends on if you like all params in one file or the organization of breaking it into multiple files.  The yaml file(s) only need to contain parameters that the user wishes to change from the default. Any unspecified parameters will revert to the defaults. The subset of parameters given to the model will be combined with all of the defaults to calculate the full parameter specification for a model run.  This full specification is additionally saved off to the `results` directory with the reports so that the run can be reproduced in the future.
 
-If using `run_titan.py`:
+If using the `run_titan` command:
 ```bash
 python -m run_titan -p /dir/to/my_params -S atlanta
 ```
 
-If submitting a job using `subTitan.sh`:
+If submitting a SLURM job using `subTitan.sh`:
 ```bash
 ./subTitan my_params/ -S atlanta
 ```
@@ -25,14 +24,13 @@ The fully computed parameters for your model run can be found in your results di
 
 ### Settings
 
-Settings allow base populations to be defined and easily re-used across model runs.  They typically are named after the city they are modeled after.  One exception is `base`, which contains complex population-based defaults and can be used in combination with any other setting (or no setting). Any values set at this level will override what is in the `default` field of a parameter definition.
+Settings allow base populations to be defined and easily re-used across model runs.  They typically are named after the city they are modeled after.  Any values set at this level will override what is in the `default` field of a parameter definition.
 
 The order of preference for a parameter value is:
 
 1. Param files (`-p` flag or first argument to `subTitan.sh`)
 2. City Setting files (`-S` flag)
-3. Base Setting files (`-b` flag)
-4. Parameter definition defaults
+3. Parameter definition defaults
 
 ### Key Parameters
 
@@ -65,17 +63,19 @@ classes:
 demographics:
   WHITE:
     ppl: 0.6 # 60% of the total population is WHITE
-    MSM:
-      ppl: 1.0 # 100% of the white population is MSM
-    PWID:
-      ppl: 0.1 # 10% of the white population is PWID - note, this is not a sex type so is outside of the summing to 100% constraint
+    sex_type:
+      MSM:
+        ppl: 1.0 # 100% of the white population is MSM
+      PWID:
+        ppl: 0.1 # 10% of the white population is PWID - note, this is not a sex type so is outside of the summing to 100% constraint
   BLACK:
     ppl: 0.4 # 40% of the total population is BLACK
-    MSM:
-      ppl: 0.9 # 90% of the black population is MSM
-    ABC:
-      ppl: 0.1 # 10% of the black population is ABC
-    # PWID not needed to be specified if not used in the BLACK population as the default ppl is 0
+    sex_type:
+      MSM:
+        ppl: 0.9 # 90% of the black population is MSM
+      ABC:
+        ppl: 0.1 # 10% of the black population is ABC
+      # PWID not needed to be specified if not used in the BLACK population as the default ppl is 0
 ```
 
 * `features`: By default all `features` are set to `false` so that they are not in use.  If you want to use a feature (e.g. `incar`), update the `features` params accordingly.  Many features files have a related section which has the related parameters for that feature when it is on.
@@ -99,8 +99,8 @@ Every parameter is associated with a data type to ensure that what is entered is
 * `float`: a floating point number (e.g.`0.67`)
 * `int`: an integer (e.g. `2`)
 * `boolean`: a `true` or `false` value
-* `enum`: a value from a set list (see `values` of same definition for valid options)
-* `array`: a list of values from a set list (see `values` of same definition for valid options)
+* `enum`: a value from a set list (see `values` of same definition for valid options, or alternatively the `class` whose values form the list of valid options)
+* `array`: a list of values from a set list (see `values` of same definition for valid options, or alternatively the `class` whose values form the list of valid options)
 * `bin`: a sub-structure with numeric keys and set fields (see `fields` of same definition for required sub-fields)
 * `sub-dict`: a sub-structure with keys that are based on the fields in `classes` (e.g. `races`)
 * `definition`: a sub-substructure with keys you define, but required fields (see `fields` of same definition for required sub-fields). Within a `definition`'s fields there is the option of a special `type` of `keys`, which means the values acceptable for that field are the keys that are defined in the definition (see `classes.sex_types` for an example).
