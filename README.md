@@ -1,6 +1,6 @@
 # TITAN Params App
 
-The TITAN Params App is a Vue web app that reads/parses the params definitions from the TITAN model and renders them in a more human-friendly way.  It is deployed at https://marshall-lab.github.io/titan-params-app/.
+The TITAN Params App is a Vue web app that reads/parses the params definitions from the TITAN model and renders them in a more human-friendly way.  It is deployed at https://pph-collective.github.io/titan-params-app/.
 
 ## Contributing
 
