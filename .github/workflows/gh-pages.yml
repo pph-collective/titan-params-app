@@ -3,7 +3,7 @@ name: Deploy GH Pages
 on:
   push:
     branches:
-      - master
+      - main
   repository_dispatch:
 
 jobs:
