@@ -34,7 +34,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .mono {
   font-family: monospace;
 }
