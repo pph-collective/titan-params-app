@@ -31,7 +31,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .header * {
   display: inline;
   cursor: pointer;

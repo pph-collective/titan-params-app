@@ -21,7 +21,7 @@ VUE_APP_TITAN_BRANCH=<branch you want to pull data from>
 VUE_APP_GH_TOKEN=<your token>
 ```
 
-In most cases, you'll likely want the `VUE_APP_TITAN_BRANCH` to be `develop`.  Without this set, the app will fetch data from the `master` branch.
+In most cases, you'll likely want the `VUE_APP_TITAN_BRANCH` to be `develop`.  Without this set, the app will fetch data from the `main` branch.
 
 Once you've set up your `.env` file you can then run `npm run fetchdata`, which fetches and parses the params data from the TITAN repo.
 

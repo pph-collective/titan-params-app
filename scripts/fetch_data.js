@@ -5,7 +5,7 @@ const fs = require("fs")
 require('dotenv').config()
 
 // default branch is master, but can overwrite with env
-const branch = process.env.VUE_APP_TITAN_BRANCH || "master"
+const branch = process.env.VUE_APP_TITAN_BRANCH || "main"
 axios.defaults.headers.common['Authorization'] = `Bearer ${process.env.VUE_APP_GH_TOKEN}`;
 
 let url = `https://api.github.com/graphql`
