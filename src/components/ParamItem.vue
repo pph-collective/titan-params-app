@@ -1,7 +1,7 @@
 <template>
   <ParamHeader :title="title" :type="params.type">
     <ul class="uk-list param-body">
-      <li>{{params.description}}</li>
+      <li><span v-html="mdDescription"></span></li>
       <!-- include all of the non-required fields in the param-->
       <Field v-for="(item, itemName) in nonStandardParams" :name="itemName" :item="item" :key="itemName" />
 
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import marked from 'marked'
+
 import Field from './Field.vue'
 import ParamHeader from './ParamHeader'
 
@@ -38,7 +40,7 @@ export default {
     ParamHeader
   },
   computed: {
-    nonStandardParams: function() {
+    nonStandardParams() {
       return  Object.keys(this.params)
         .filter(key => !this.standardItems.includes(key))
         .reduce((obj, key) => {
@@ -46,8 +48,11 @@ export default {
           return obj;
         }, {});
     },
-    nextLevel: function() {
+    nextLevel() {
       return this.level + 1
+    },
+    mdDescription() {
+      return marked(this.params.description || '');
     }
   }
 }
