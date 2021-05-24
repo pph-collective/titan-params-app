@@ -14,19 +14,33 @@
         ]</p>
     </span>
 
-    <span v-else><strong>{{name}}: </strong><span class="mono">{{item}}</span></span>
+    <span v-else class="inline">
+      <strong>{{name}}: </strong>
+      <span :class="[name === 'description' ? '' : 'mono']" v-html="parsedItem"></span>
+    </span>
   </li>
 </template>
 
 <script>
+import marked from 'marked'
+
 export default {
   name: 'Field',
   props: {
     name: String,
     item: [String, Number, Array, Object, Boolean]
   },
+  computed: {
+    parsedItem() {
+      if (typeof this.item === "string") {
+        return marked(this.item);
+      } else {
+        return this.item;
+      }
+    }
+  },
   methods: {
-    joinArray: function() {
+    joinArray() {
       return this.item.join(", ")
     }
   }
