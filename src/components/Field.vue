@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     parsedItem() {
-      if (typeof this.item === "string") {
+      if (typeof this.item === "string" && this.name === "description") {
         return marked(this.item);
       } else {
         return this.item;
